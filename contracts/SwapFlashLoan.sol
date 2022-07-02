@@ -24,6 +24,8 @@ import "./Swap.sol";
  * deployment size.
  */
 contract SwapFlashLoan is Swap {
+    using SafeMathUpgradeable for uint256;
+    using SafeERC20Upgradeable for IERC20Upgradeable;
     // Total fee that is charged on all flashloans in BPS. Borrowers must repay the amount plus the flash loan fee.
     // This fee is split between the protocol and the pool.
     uint256 public flashLoanFeeBPS;
