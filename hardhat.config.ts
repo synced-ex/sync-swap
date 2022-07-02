@@ -34,11 +34,8 @@ const config: HardhatUserConfig = {
       gasPrice: "auto",
       // gasMultiplier: 1.2
     },
-    localhostFantom: {
-      url: "http://127.0.0.1:8547/",
-    },
     localhost: {
-      url: "http://127.0.0.1:8547/",
+      url: "http://127.0.0.1:8545/",
     },
   },
   solidity: {

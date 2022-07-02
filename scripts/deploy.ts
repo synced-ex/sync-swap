@@ -5,7 +5,7 @@ import { sleep } from "./helpers/sleep";
 async function deployLpToken(deployer: string) {
   const contract = await deploy({
     deployer,
-    contractName: "LiquidityProviderToken",
+    contractName: "LPToken",
     constructorArguments: [],
   });
 
@@ -97,15 +97,25 @@ async function deployPool(
   });
 }
 
-// TODO: deploy test token
+async function deployTestToken(deployer: string, name: string, symbol: string ) {
+  const contract = await deploy({
+    deployer,
+    contractName: "TestToken",
+    constructorArguments: [name, symbol],
+  });
+
+  return contract;
+}
 
 async function main() {
   const [deployerSigner] = await ethers.getSigners();
   const deployer = deployerSigner.address;
 
   // TODO: deploy two test token (TOKEN0, TOKEN1)
+  const token0 = await deployTestToken(deployer, "Test Token 0", "TOKEN0");
+  const token1 = await deployTestToken(deployer, "Test Token 1", "TOKEN1");
 
-  const tokenAddresses = ["", ""];
+  const tokenAddresses = [token0.address, token1.address];
   const tokenDecimals = [18, 18]; // DEI, bDEI
   const lpTokenName = "Sync TOKEN0/TOKEN1";
   const lpTokenSymbol = "TOKEN0/TOKEN1";
