@@ -32,7 +32,6 @@ const config: HardhatUserConfig = {
       chainId: 250,
       gas: "auto",
       gasPrice: "auto",
-      // gasMultiplier: 1.2
     },
     localhost: {
       url: "http://127.0.0.1:8545/",

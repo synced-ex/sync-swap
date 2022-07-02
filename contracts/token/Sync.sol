@@ -19,23 +19,22 @@ contract SyncToken is
     AccessControlUpgradeable,
     ERC20PermitUpgradeable
 {
-    bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
     bytes32 public constant BURNER_ROLE = keccak256("BURNER_ROLE");
+    bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
 
     function initialize() public initializer {
         __ERC20_init("Sync", "SYNC");
+        __ERC20Permit_init("Sync");
         __ERC20Burnable_init();
         __AccessControl_init();
-        __ERC20Permit_init("Sync");
-
         _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
-    }
-
-    function mint(address to, uint256 amount) external onlyRole(MINTER_ROLE) {
-        _mint(to, amount);
     }
 
     function burn(address from, uint256 amount) external onlyRole(BURNER_ROLE) {
         _burn(from, amount);
+    }
+
+    function mint(address to, uint256 amount) external onlyRole(MINTER_ROLE) {
+        _mint(to, amount);
     }
 }
