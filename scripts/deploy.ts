@@ -97,7 +97,7 @@ async function deployPool(
   });
 }
 
-async function deployTestToken(deployer: string, name: string, symbol: string ) {
+async function deployTestToken(deployer: string, name: string, symbol: string) {
   const contract = await deploy({
     deployer,
     contractName: "TestToken",
@@ -113,7 +113,10 @@ async function main() {
 
   // TODO: deploy two test token (TOKEN0, TOKEN1)
   const token0 = await deployTestToken(deployer, "Test Token 0", "TOKEN0");
+  await sleep(10000);
+
   const token1 = await deployTestToken(deployer, "Test Token 1", "TOKEN1");
+  await sleep(10000);
 
   const tokenAddresses = [token0.address, token1.address];
   const tokenDecimals = [18, 18]; // DEI, bDEI
@@ -127,7 +130,7 @@ async function main() {
   await sleep(10000);
 
   const lpToken = await deployLpToken(deployer);
-  await sleep(30000);
+  await sleep(15000);
 
   await deploySyncToken(deployer);
   await sleep(10000);

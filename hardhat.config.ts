@@ -31,10 +31,10 @@ const config: HardhatUserConfig = {
       accounts: [process.env.DEPLOYER_PRIVATE_KEY!],
       chainId: 250,
       gas: "auto",
-      gasPrice: "auto",
+      gasPrice: "auto"
     },
     localhost: {
-      url: "http://127.0.0.1:8545/",
+      url: "http://127.0.0.1:8547/",
     },
   },
   solidity: {
@@ -44,7 +44,7 @@ const config: HardhatUserConfig = {
         settings: {
           optimizer: {
             enabled: true,
-            runs: 100000,
+            runs: 999999,
           },
         },
       },
